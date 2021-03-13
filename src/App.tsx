@@ -1,25 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import MainApp from "./app/index";
+
+// Use Redux
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'; // Imports: Redux Persist Persister
+import { store, persistor } from './redux/store'; // Import redux store
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hallo <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React 2
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <MainApp />
+      </PersistGate>
+    </Provider>
   );
 }
 
