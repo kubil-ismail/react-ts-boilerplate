@@ -8,7 +8,7 @@ function HomePage(props: Props) {
   return (
     <>
       <Navbar />
-      <p>Content not found 1</p>
+      <p>Content not found 2</p>
       <Navigation />
     </>
   );

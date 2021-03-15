@@ -2,7 +2,7 @@ import { PureComponent, ReactNode, Suspense } from "react";
 
 // Use React Router
 import Routes from "./router";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { RenderApp, NotFound, RenderError } from "src/helpers/screen";
 
 // Use redux
@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 
 // Custome material ui theme
 import { ThemeProvider } from "@material-ui/core/styles";
-import theme from 'src/material-theme';
+import theme from "src/material-theme";
 
 interface Props {
   auth: any;
@@ -36,8 +36,10 @@ class MainApp extends PureComponent<Props, State> {
         <ThemeProvider theme={theme}>
           {!this.state.hasError ? (
             <Router basename={process.env.PUBLIC_URL}>
-              <RenderApp routes={Routes} auth={auth} />
-              <NotFound routes={Routes} auth={auth} />
+              <Switch>
+                <RenderApp routes={Routes} auth={auth} />
+                <NotFound routes={Routes} auth={auth} />
+              </Switch>
             </Router>
           ) : (
             <RenderError />
